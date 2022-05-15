@@ -19,9 +19,23 @@ public class Address {
     @SequenceGenerator(name = "address_generator",sequenceName = "address_sequence",initialValue = 1,allocationSize = 1)
     private Integer addressId;
 
-    private String address;
+    @Column(length = 30)
+    private String doorNumber;
 
-    private String location;
+    @Column(length = 30)
+    private String streetName;
+
+    @Column(length = 30)
+    private  String landMark;
+
+    @Column(length = 25)
+    private String city;
+
+    @Column(length = 20)
+    private String sate;
+
+    @Column(length = 20)
+    private String country;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "paying_guest_id")

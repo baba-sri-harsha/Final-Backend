@@ -21,9 +21,11 @@ public class PayingGuest {
     private String name;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 25)
     private PgGender pgGender;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 25)
     private Category category;
 
     private int rating;
