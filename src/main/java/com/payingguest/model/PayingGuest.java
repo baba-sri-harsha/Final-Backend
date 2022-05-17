@@ -3,13 +3,13 @@ package com.payingguest.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@ToString
 public class PayingGuest {
 
     @Id
@@ -21,7 +21,6 @@ public class PayingGuest {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 25)
     private PgGender pgGender;
 
     @Enumerated(EnumType.STRING)
@@ -30,13 +29,17 @@ public class PayingGuest {
 
     private int rating;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "payingGuest")
-    private Set<Booking> bookings;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="address_id")
+    private Address address;
 
-    @OneToMany(cascade =CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "payingGuest")
+    @OneToMany(cascade =CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @JoinColumn(name = "paying_guest_id")
     private Set<Room> rooms;
 
-
+    @OneToMany(cascade =CascadeType.PERSIST,fetch = FetchType.EAGER )
+    @JoinColumn(name = "paying_guest_id")
+    private Set<Booking> bookings;
 
 
 }

@@ -1,9 +1,7 @@
 package com.payingguest.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,6 +11,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Room {
 
     @Id
@@ -30,11 +29,10 @@ public class Room {
     @Enumerated(EnumType.STRING)
     private RoomType roomType;
 
-    @ManyToOne(fetch =FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "paying_guest_id")
-    private PayingGuest payingGuest;
+    @JsonIgnore
+    private  PayingGuest payingGuest;
 
-    @OneToMany(cascade =CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "room")
-    private Set<Booking> bookings;
 
 }

@@ -1,11 +1,9 @@
 package com.payingguest.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,6 +11,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Customer {
 
     @Id
@@ -20,6 +19,7 @@ public class Customer {
     @SequenceGenerator(name = "customer_generator", sequenceName = "customer_sequence", initialValue = 1, allocationSize = 1)
     private Integer customerId;
 
+    @Column(length = 30)
     private String customerName;
 
     private String mobileNumber;
@@ -28,9 +28,12 @@ public class Customer {
 
     private String idNumber;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "customer")
-    private Set<Booking> bookings;
+    @OneToMany(cascade =CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "customer")
+    private List<Booking> bookings;
 
+//    public String toString(){
+//        return "hi";
+//    }
 
 
 

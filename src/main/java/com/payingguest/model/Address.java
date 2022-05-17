@@ -1,9 +1,6 @@
 package com.payingguest.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Address {
 
     @Id
@@ -32,16 +30,10 @@ public class Address {
     private String city;
 
     @Column(length = 20)
-    private String sate;
+    private String state;
 
     @Column(length = 20)
     private String country;
-
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "paying_guest_id")
-    private PayingGuest payingGuest;
-
-
 
 
 
