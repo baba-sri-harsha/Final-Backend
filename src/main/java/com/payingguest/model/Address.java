@@ -13,8 +13,8 @@ import javax.persistence.*;
 public class Address {
 
     @Id
-    @GeneratedValue(generator = "address_generator",strategy = GenerationType.AUTO)
-    @SequenceGenerator(name = "address_generator",sequenceName = "address_sequence",initialValue = 1,allocationSize = 1)
+    @GeneratedValue(generator = "address_generator", strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "address_generator", sequenceName = "address_sequence", initialValue = 1, allocationSize = 1)
     private Integer addressId;
 
     @Column(length = 30)
@@ -24,7 +24,7 @@ public class Address {
     private String streetName;
 
     @Column(length = 30)
-    private  String landMark;
+    private String landMark;
 
     @Column(length = 25)
     private String city;
@@ -34,7 +34,6 @@ public class Address {
 
     @Column(length = 20)
     private String country;
-
 
 
 }

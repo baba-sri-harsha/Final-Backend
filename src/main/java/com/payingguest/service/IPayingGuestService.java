@@ -1,8 +1,12 @@
 package com.payingguest.service;
 
+import java.time.LocalDateTime;
 import java.util.*;
+
+import com.payingguest.Exceptions.BookingNotFoundException;
 import com.payingguest.Exceptions.PayingGuestNotFoundException;
 import com.payingguest.model.PayingGuest;
+import com.payingguest.model.PgDetails;
 import org.springframework.data.jpa.repository.Query;
 
 public interface IPayingGuestService  {
@@ -25,6 +29,8 @@ public interface IPayingGuestService  {
 
     List<PayingGuest>getByRating(int rating) throws PayingGuestNotFoundException;
 
+    List<PayingGuest>getByCity(String city) throws PayingGuestNotFoundException;
+
     List<PayingGuest> getByCityStartingWith(String city) throws PayingGuestNotFoundException;
 
     List<PayingGuest> getByCityAndName(String city, String name) throws PayingGuestNotFoundException;
@@ -35,5 +41,6 @@ public interface IPayingGuestService  {
     List<PayingGuest>getByAddressId(int addressId) throws PayingGuestNotFoundException;
 
     List<PayingGuest>getByCityAndLandMark(String city,String landMark) throws PayingGuestNotFoundException;
+
 
 }

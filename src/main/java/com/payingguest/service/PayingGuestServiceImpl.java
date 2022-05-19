@@ -82,7 +82,19 @@ public class PayingGuestServiceImpl implements IPayingGuestService {
 
     @Override
     public List<PayingGuest> getByRating(int rating) throws PayingGuestNotFoundException {
-        List<PayingGuest> payingGuestList = payingGuestRepository.findByRating(rating)
+        List<PayingGuest> payingGuestList = payingGuestRepository.findByRatingGreaterThan(rating)
+                .stream()
+                .sorted(Comparator.comparing(PayingGuest::getPayingGuestId))
+                .collect(Collectors.toList());
+        if (payingGuestList.isEmpty())
+            throw new PayingGuestNotFoundException("pg not found");
+        else
+            return payingGuestList;
+    }
+
+    @Override
+    public List<PayingGuest> getByCity(String city) throws PayingGuestNotFoundException {
+        List<PayingGuest> payingGuestList = payingGuestRepository.findByCity(city)
                 .stream()
                 .sorted(Comparator.comparing(PayingGuest::getPayingGuestId))
                 .collect(Collectors.toList());
@@ -111,10 +123,13 @@ public class PayingGuestServiceImpl implements IPayingGuestService {
                 .sorted(Comparator.comparing(PayingGuest::getPayingGuestId))
                 .collect(Collectors.toList());
         if (payingGuestList.isEmpty())
+            // No pg found
+            // booking cost = cost per day * total days
             throw new PayingGuestNotFoundException("pg not found");
         else
             return payingGuestList;
     }
+
 
     @Override
     public List<PayingGuest> getByCityAndRating(String city, int rating) throws PayingGuestNotFoundException {
@@ -153,6 +168,6 @@ public class PayingGuestServiceImpl implements IPayingGuestService {
             return payingGuestList;
     }
 
-    
+
 
 }

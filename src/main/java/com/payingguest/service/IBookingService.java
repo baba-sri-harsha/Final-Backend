@@ -5,8 +5,23 @@ import com.payingguest.model.Booking;
 
 public interface IBookingService {
 
+    /**
+     * @param booking
+     * @param payingGuestId
+     * @param customerId
+     */
+    void addBooking(Booking booking,int payingGuestId,int customerId);
+
+    /**
+     * @param booking
+     */
     void updateBooking(Booking booking);
 
+    /**
+     *
+     * @param id
+     * @return Booking
+     */
     Booking getById(int id);
 
 //    void addPayingGuest(PayingGuest payingGuest);

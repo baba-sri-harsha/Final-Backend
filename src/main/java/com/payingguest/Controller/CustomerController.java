@@ -20,10 +20,7 @@ public class CustomerController {
         return customerService.addCustomer(customer);
     }
 
-    @PutMapping("/customer-booking/customerId/{customerId}")
-    public void updateCustomer(@PathVariable("customerId")int customerId){
-         customerService.updateCustomer(customerId);
-    }
+
 
 
 }

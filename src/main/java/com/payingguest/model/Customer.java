@@ -28,13 +28,9 @@ public class Customer {
 
     private String idNumber;
 
-    @OneToMany(cascade =CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "customer")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "paying_guest_id")
     private List<Booking> bookings;
-
-//    public String toString(){
-//        return "hi";
-//    }
-
 
 
 }

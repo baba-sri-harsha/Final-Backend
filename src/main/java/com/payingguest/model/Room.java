@@ -32,7 +32,7 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "paying_guest_id")
     @JsonIgnore
-    private  PayingGuest payingGuest;
+    private PayingGuest payingGuest;
 
 
 }

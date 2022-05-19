@@ -80,6 +80,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     }
 
+    @ExceptionHandler(BookingNotFoundException.class)
+    public ResponseEntity<Object>handleBookingNotFound(Exception ex){
+        HttpHeaders headers= new HttpHeaders();
+        headers.add("desc" , "Booking Not Found");
+        String error=ex.getMessage();
+        List<String>  messages= Arrays.asList(error, "Booking Not Found");
+        ApiErrors apiErrors= new ApiErrors(LocalDateTime.now(),HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value(),error,messages);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).headers(headers).body(apiErrors);
+
+    }
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object>handleOther(Exception ex){
         HttpHeaders headers= new HttpHeaders();

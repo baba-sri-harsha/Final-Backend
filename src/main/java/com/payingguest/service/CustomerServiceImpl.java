@@ -5,9 +5,9 @@ import com.payingguest.repository.ICustomerRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomerServiceImpl implements ICustomerService{
+public class CustomerServiceImpl implements ICustomerService {
 
-    private  ICustomerRepository customerRepository;
+    private ICustomerRepository customerRepository;
 
     public CustomerServiceImpl(ICustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -22,6 +22,11 @@ public class CustomerServiceImpl implements ICustomerService{
     @Override
     public void updateCustomer(int id) {
 
+    }
+
+    @Override
+    public Customer getByCustomerId(int id) {
+        return customerRepository.getById(id);
     }
 
 

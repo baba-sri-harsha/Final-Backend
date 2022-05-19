@@ -8,6 +8,7 @@ public interface ICustomerService {
 
     Customer addCustomer(Customer customer);
     void updateCustomer(int id);
+    Customer getByCustomerId(int id);
 //    void deletePayingGuest(int payingGuestId);
 //    void updatePayingGuest(PayingGuest payingGuest);
 //
